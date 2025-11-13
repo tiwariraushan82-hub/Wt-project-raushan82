@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SocialSphere | Modern Social Platform</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Login/Signup Modal -->
+    <div id="authModal" class="auth-modal">
+        <div class="auth-modal-content">
+            <div class="auth-tabs">
+                <button class="auth-tab active" data-tab="login">Login</button>
+                <button class="auth-tab" data-tab="signup">Sign Up</button>
+            </div>
+            
+            <!-- Login Form -->
+            <form id="loginForm" class="auth-form active">
+                <div class="form-group">
+                    <div class="input-with-icon">
+                        <i class="fas fa-user"></i>
+                        <input type="text" id="loginEmail" placeholder="Email or Username" required>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <div class="input-with-icon">
+                        <i class="fas fa-lock"></i>
+                        <input type="password" id="loginPassword" placeholder="Password" required>
+                        <button type="button" class="toggle-password">
+                            <i class="fas fa-eye"></i>
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="form-options">
+                    <label class="remember-me">
+                        <input type="checkbox" id="remember">
+                        <span class="checkmark"></span>
+                        Remember me
+                    </label>
+                    <a href="#" class="forgot-password">Forgot password?</a>
+                </div>
+                
+                <button type="submit" class="auth-btn">Sign In</button>
+                
+                <div class="divider">
+                    <span>Or continue with</span>
+                </div>
+                
+                <div class="social-login">
+                    <button type="button" class="social-btn google">
+                        <i class="fab fa-google"></i>
+                        Google
+                    </button>
+                    <button type="button" class="social-btn facebook">
+                        <i class="fab fa-facebook-f"></i>
+                        Facebook
+                    </button>
+                </div>
+            </form>
+            
+            <!-- Signup Form -->
+            <form id="signupForm" class="auth-form">
+                <div class="form-row">
+                    <div class="form-group">
+                        <div class="input-with-icon">
+                            <i class="fas fa-user"></i>
+                            <input type="text" id="firstName" placeholder="First Name" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <div class="input-with-icon">
+                            <i class="fas fa-user"></i>
+                            <input type="text" id="lastName" placeholder="Last Name" required>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <div class="input-with-icon">
+                        <i class="fas fa-envelope"></i>
+                        <input type="email" id="signupEmail" placeholder="Email" required>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <div class="input-with-icon">
+                        <i class="fas fa-at"></i>
+                        <input type="text" id="username" placeholder="Username" required>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <div class="input-with-icon">
+                        <i class="fas fa-lock"></i>
+                        <input type="password" id="signupPassword" placeholder="Password" required>
+                        <button type="button" class="toggle-password">
+                            <i class="fas fa-eye"></i>
+                        </button>
+                    </div>
+                    <div class="password-strength">
+                        <div class="strength-bar">
+                            <div class="strength-fill" id="strengthFill"></div>
+                        </div>
+                        <span class="strength-text" id="strengthText">Password strength</span>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <div class="input-with-icon">
+                        <i class="fas fa-lock"></i>
+                        <input type="password" id="confirmPassword" placeholder="Confirm Password" required>
+                    </div>
+                </div>
+                
+                <div class="form-options">
+                    <label class="remember-me">
+                        <input type="checkbox" id="terms" required>
+                        <span class="checkmark"></span>
+                        I agree to the <a href="#">Terms</a> and <a href="#">Privacy Policy</a>
+                    </label>
+                </div>
+                
+                <button type="submit" class="auth-btn">Create Account</button>
+                
+                <div class="divider">
+                    <span>Or sign up with</span>
+                </div>
+                
+                <div class="social-login">
+                    <button type="button" class="social-btn google">
+                        <i class="fab fa-google"></i>
+                        Google
+                    </button>
+                    <button type="button" class="social-btn facebook">
+                        <i class="fab fa-facebook-f"></i>
+                        Facebook
+                    </button>
+                </div>
+            </form>
+            
+            <button class="auth-close">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header>
+        <div class="container header-content">
+            <div class="logo">
+                <i class="fas fa-globe-americas"></i>
+                <span>SocialSphere</span>
+            </div>
+            
+            <div class="search-bar">
+                <i class="fas fa-search"></i>
+                <input type="text" placeholder="Search for people, posts, or topics...">
+            </div>
+            
+            <div class="nav-icons">
+                <a href="#" class="active"><i class="fas fa-home"></i></a>
+                <a href="#"><i class="fas fa-comment-dots"></i></a>
+                <a href="#"><i class="fas fa-bell"></i></a>
+                <a href="#"><i class="fas fa-video"></i></a>
+            </div>
+            
+            <div class="user-profile" id="userProfile">
+                <div class="auth-buttons" id="authButtons">
+                    <button class="login-btn" id="loginBtn">Login</button>
+                    <button class="signup-btn" id="signupBtn">Sign Up</button>
+                </div>
+                <div class="logged-in-user" id="loggedInUser" style="display: none;">
+                    <img src="https://i.pravatar.cc/150?img=12" alt="Profile" id="userAvatar">
+                    <span id="userName">Alex Morgan</span>
+                    <div class="logout-btn" id="logoutBtn">
+                        <i class="fas fa-sign-out-alt"></i> Logout
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <!-- Left Sidebar -->
+        <aside class="sidebar">
+            <ul class="sidebar-menu">
+                <li><a href="#" class="active"><i class="fas fa-home"></i> Home</a></li>
+                <li><a href="#"><i class="fas fa-user-friends"></i> Friends</a></li>
+                <li><a href="#"><i class="fas fa-users"></i> Groups</a></li>
+                <li><a href="#"><i class="fas fa-store"></i> Marketplace</a></li>
+                <li><a href="#"><i class="fas fa-video"></i> Watch</a></li>
+                <li><a href="#"><i class="fas fa-calendar-alt"></i> Events</a></li>
+                <li><a href="#"><i class="fas fa-bookmark"></i> Saved</a></li>
+                <li><a href="#"><i class="fas fa-cog"></i> Settings</a></li>
+            </ul>
+            
+            <div class="trending-topics">
+                <h3>Trending Topics</h3>
+                <ul>
+                    <li>
+                        <a href="#">
+                            <span class="trending-tag">#TechInnovation</span>
+                            <div class="trending-count">12.5K posts</div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <span class="trending-tag">#SustainableLiving</span>
+                            <div class="trending-count">8.7K posts</div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <span class="trending-tag">#DigitalArt</span>
+                            <div class="trending-count">6.3K posts</div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <span class="trending-tag">#RemoteWork</span>
+                            <div class="trending-count">5.9K posts</div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <span class="trending-tag">#Mindfulness</span>
+                            <div class="trending-count">4.2K posts</div>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Create Post (Visible when logged in) -->
+            <div class="create-post" id="createPost" style="display: none;">
+                <div class="post-input">
+                    <img src="https://i.pravatar.cc/150?img=12" alt="Your profile" id="postUserAvatar">
+                    <textarea placeholder="What's on your mind?" id="postContent"></textarea>
+                </div>
+                <div class="post-actions">
+                    <div class="action-icons">
+                        <i class="fas fa-image" title="Photo/Video"></i>
+                        <i class="fas fa-user-tag" title="Tag Friends"></i>
+                        <i class="fas fa-map-marker-alt" title="Location"></i>
+                        <i class="fas fa-smile" title="Feeling/Activity"></i>
+                    </div>
+                    <button class="post-btn" id="publishPost">Post</button>
+                </div>
+            </div>
+
+            <!-- Guest Message -->
+            <div class="guest-message" id="guestMessage">
+                <div class="guest-content">
+                    <i class="fas fa-users"></i>
+                    <h3>Join Our Community</h3>
+                    <p>Sign in to connect with friends, share your experiences, and discover amazing content from around the world.</p>
+                    <div class="guest-actions">
+                        <button class="auth-btn primary" id="guestLoginBtn">Login</button>
+                        <button class="auth-btn secondary" id="guestSignupBtn">Sign Up</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Post 1 -->
+            <div class="post">
+                <div class="post-header">
+                    <img src="https://i.pravatar.cc/150?img=5" alt="Profile">
+                    <div class="user-info">
+                        <h4>Sarah Johnson</h4>
+                        <span>2 hours ago · <i class="fas fa-globe-americas"></i></span>
+                    </div>
+                </div>
+                <div class="post-content">
+                    <p>Just finished my morning hike! The view was absolutely breathtaking. 🏞️ Nothing like starting the day with some fresh mountain air and exercise. #MorningHike #NatureLover</p>
+                    <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Mountain view" class="post-image">
+                </div>
+                <div class="post-stats">
+                    <span><i class="fas fa-heart"></i> 245</span>
+                    <span>128 comments · 42 shares</span>
+                </div>
+                <div class="post-actions-buttons">
+                    <div class="action-btn">
+                        <i class="far fa-heart"></i>
+                        <span>Like</span>
+                    </div>
+                    <div class="action-btn">
+                        <i class="far fa-comment"></i>
+                        <span>Comment</span>
+                    </div>
+                    <div class="action-btn">
+                        <i class="fas fa-share"></i>
+                        <span>Share</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Post 2 -->
+            <div class="post">
+                <div class="post-header">
+                    <img src="https://i.pravatar.cc/150?img=8" alt="Profile">
+                    <div class="user-info">
+                        <h4>Michael Chen</h4>
+                        <span>5 hours ago · <i class="fas fa-users"></i></span>
+                    </div>
+                </div>
+                <div class="post-content">
+                    <p>Excited to announce that our startup just secured Series A funding! 🚀 Huge thanks to our incredible team and investors who believed in our vision from day one. The future is bright! #StartupLife #Funding #Tech</p>
+                </div>
+                <div class="post-stats">
+                    <span><i class="fas fa-heart"></i> 512</span>
+                    <span>89 comments · 65 shares</span>
+                </div>
+                <div class="post-actions-buttons">
+                    <div class="action-btn active">
+                        <i class="fas fa-heart"></i>
+                        <span>Like</span>
+                    </div>
+                    <div class="action-btn">
+                        <i class="far fa-comment"></i>
+                        <span>Comment</span>
+                    </div>
+                    <div class="action-btn">
+                        <i class="fas fa-share"></i>
+                        <span>Share</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Post 3 -->
+            <div class="post">
+                <div class="post-header">
+                    <img src="https://i.pravatar.cc/150?img=11" alt="Profile">
+                    <div class="user-info">
+                        <h4>Emma Rodriguez</h4>
+                        <span>Yesterday · <i class="fas fa-globe-americas"></i></span>
+                    </div>
+                </div>
+                <div class="post-content">
+                    <p>Just launched my new digital art collection! Each piece tells a story about connection in our digital age. Check it out and let me know what you think! 🎨 #DigitalArt #NFT #Creative</p>
+                    <img src="https://images.unsplash.com/photo-1541961017774-22349e4a1262?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1158&q=80" alt="Digital art" class="post-image">
+                </div>
+                <div class="post-stats">
+                    <span><i class="fas fa-heart"></i> 387</span>
+                    <span>142 comments · 28 shares</span>
+                </div>
+                <div class="post-actions-buttons">
+                    <div class="action-btn">
+                        <i class="far fa-heart"></i>
+                        <span>Like</span>
+                    </div>
+                    <div class="action-btn">
+                        <i class="far fa-comment"></i>
+                        <span>Comment</span>
+                    </div>
+                    <div class="action-btn">
+                        <i class="fas fa-share"></i>
+                        <span>Share</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Post 4 -->
+            <div class="post">
+                <div class="post-header">
+                    <img src="https://i.pravatar.cc/150?img=32" alt="Profile">
+                    <div class="user-info">
+                        <h4>David Kim</h4>
+                        <span>2 days ago · <i class="fas fa-users"></i></span>
+                    </div>
+                </div>
+                <div class="post-content">
+                    <p>Just wrapped up an amazing photography workshop! So inspiring to see everyone's creativity and growth over the weekend. Here's one of my favorite shots from the session. #Photography #Workshop #CreativeCommunity</p>
+                    <img src="https://images.unsplash.com/photo-1492684223066-81342ee5ff30?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Photography" class="post-image">
+                </div>
+                <div class="post-stats">
+                    <span><i class="fas fa-heart"></i> 421</span>
+                    <span>76 comments · 34 shares</span>
+                </div>
+                <div class="post-actions-buttons">
+                    <div class="action-btn active">
+                        <i class="fas fa-heart"></i>
+                        <span>Like</span>
+                    </div>
+                    <div class="action-btn">
+                        <i class="far fa-comment"></i>
+                        <span>Comment</span>
+                    </div>
+                    <div class="action-btn">
+                        <i class="fas fa-share"></i>
+                        <span>Share</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Post 5 -->
+            <div class="post">
+                <div class="post-header">
+                    <img src="https://i.pravatar.cc/150?img=47" alt="Profile">
+                    <div class="user-info">
+                        <h4>Lisa Thompson</h4>
+                        <span>3 days ago · <i class="fas fa-globe-americas"></i></span>
+                    </div>
+                </div>
+                <div class="post-content">
+                    <p>Just published my latest article on sustainable living in urban environments! It explores practical ways we can all reduce our environmental footprint, even in the heart of the city. Link in bio! 🌿 #Sustainability #UrbanLiving #EcoFriendly</p>
+                </div>
+                <div class="post-stats">
+                    <span><i class="fas fa-heart"></i> 298</span>
+                    <span>53 comments · 41 shares</span>
+                </div>
+                <div class="post-actions-buttons">
+                    <div class="action-btn">
+                        <i class="far fa-heart"></i>
+                        <span>Like</span>
+                    </div>
+                    <div class="action-btn">
+                        <i class="far fa-comment"></i>
+                        <span>Comment</span>
+                    </div>
+                    <div class="action-btn">
+                        <i class="fas fa-share"></i>
+                        <span>Share</span>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <!-- Right Sidebar -->
+        <aside class="right-sidebar">
+            <div class="contacts">
+                <h3>Online Friends</h3>
+                <div class="contact">
+                    <img src="https://i.pravatar.cc/150?img=32" alt="Profile">
+                    <div class="contact-info">
+                        <h4>David Kim</h4>
+                        <span>Active now</span>
+                    </div>
+                    <div class="online-status"></div>
+                </div>
+                <div class="contact">
+                    <img src="https://i.pravatar.cc/150?img=27" alt="Profile">
+                    <div class="contact-info">
+                        <h4>Jessica Lee</h4>
+                        <span>Active 5m ago</span>
+                    </div>
+                    <div class="online-status"></div>
+                </div>
+                <div class="contact">
+                    <img src="https://i.pravatar.cc/150?img=68" alt="Profile">
+                    <div class="contact-info">
+                        <h4>Robert Garcia</h4>
+                        <span>Active 10m ago</span>
+                    </div>
+                    <div class="online-status"></div>
+                </div>
+                <div class="contact">
+                    <img src="https://i.pravatar.cc/150?img=60" alt="Profile">
+                    <div class="contact-info">
+                        <h4>Amanda Wilson</h4>
+                        <span>Active 15m ago</span>
+                    </div>
+                    <div class="online-status"></div>
+                </div>
+            </div>
+
+            <div class="suggestions">
+                <h3>People You May Know</h3>
+                <div class="suggestion">
+                    <img src="https://i.pravatar.cc/150?img=13" alt="Profile">
+                    <div class="suggestion-info">
+                        <h4>James Miller</h4>
+                        <span>12 mutual friends</span>
+                    </div>
+                    <button class="follow-btn">Follow</button>
+                </div>
+                <div class="suggestion">
+                    <img src="https://i.pravatar.cc/150?img=49" alt="Profile">
+                    <div class="suggestion-info">
+                        <h4>Sophia Brown</h4>
+                        <span>8 mutual friends</span>
+                    </div>
+                    <button class="follow-btn">Follow</button>
+                </div>
+                <div class="suggestion">
+                    <img src="https://i.pravatar.cc/150?img=36" alt="Profile">
+                    <div class="suggestion-info">
+                        <h4>Daniel White</h4>
+                        <span>5 mutual friends</span>
+                    </div>
+                    <button class="follow-btn">Follow</button>
+                </div>
+                <div class="suggestion">
+                    <img src="https://i.pravatar.cc/150?img=22" alt="Profile">
+                    <div class="suggestion-info">
+                        <h4>Olivia Taylor</h4>
+                        <span>15 mutual friends</span>
+                    </div>
+                    <button class="follow-btn">Follow</button>
+                </div>
+            </div>
+        </aside>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
